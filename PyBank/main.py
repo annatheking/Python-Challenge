@@ -8,13 +8,15 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
     profit_loss = []
     monthly_diff = []
+    month_column = []
 
     net = 0
     mos = 0
     sum_monthly_diff = 0
 
     for row in csvreader: 
-        #print(row[1])
+        #print(row)
+        month_column.append(row[0])
 
     #The total number of months included in the dataset
         mos += 1
@@ -24,7 +26,7 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
         if pos_num[0] == '':
             net -= int(pos_num[1])
-            profit_loss.append(int(pos_num[1]))
+            profit_loss.append(-int(pos_num[1]))
         else:
             net += int(pos_num[0])
             profit_loss.append(int(pos_num[0]))
@@ -38,18 +40,24 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
         monthly_diff.append(lag_profit_loss[i] - lead_profit_loss[i])
 
     avg_diff = sum_monthly_diff / (mos-1)
-    
     avg = round(avg_diff,2)
 
     #The greatest increase in profits (date and amount) over the entire period
-
+    max_incrs = max(monthly_diff)
+    position_incrs = monthly_diff.index(max_incrs) + 1
+    item_incrs = month_column[position_incrs]
 
     #The greatest decrease in losses (date and amount) over the entire period
+    max_decrs = min(monthly_diff)
+    #print(max_decrs)
+    position_decrs = monthly_diff.index(max_decrs) + 1
+    item_decrs = month_column[position_decrs]
+
 
 print("Financial Analysis")
 print("----------------------------")    
 print(f"Total Months: {mos}")
 print(f"Total: ${net}")
 print(f"Average  Change: ${avg}")
-print("Greatest Increase in Profits: {} ({})")
-print("Greatest Decrease in Profits: {} ({})")
+print(f"Greatest Increase in Profits: {item_incrs} ({max_incrs})")
+print(f"Greatest Decrease in Profits: {item_decrs} ({max_decrs})")
