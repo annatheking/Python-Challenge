@@ -7,20 +7,20 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
     next(csvreader,None)
 
     net = 0
+    mos = 0
 
     for row in csvreader: 
-        pos_num = row[1].split("-")
+        #print(row[1])
 
     #The total number of months included in the dataset
-         
+        mos += 1
 
     #The total net amount of "Profit/Losses" over the entire period
+        pos_num = row[1].split("-")
         if pos_num[0] == '':
             net -= int(pos_num[1])
-            #print(pos_num[1])
         else:
             net += int(pos_num[0])
-            #print(pos_num[0])
 
     #The average change in "Profit/Losses" between months over the entire period
 
@@ -33,4 +33,8 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
 print("Financial Analysis")
 print("----------------------------")    
+print(f"Total Months: {mos}")
 print(f"Total: ${net}")
+print("Average  Change: ${}")
+print("Greatest Increase in Profits: {} ({})")
+print("Greatest Decrease in Profits: {} ({})")
