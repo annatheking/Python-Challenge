@@ -20,16 +20,32 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
     #The total number of votes each candidate won
     #The percentage of votes each candidate won
-    #The winner of the election based on popular vote.
     votes_per_person = [[float(round(candidate.count(i)*100/total_vote,3)), i, candidate.count(i)] for i in set(candidate)]
     votes_per_person.sort(reverse = True)
 
-    print("Election Results")
-    print("-------------------------")
-    print(f"Total Votes: {total_vote}")
-    print("-------------------------")
-    for j in votes_per_person:
-        print(f"{j[1]}: {j[0]}% ({j[2]})")
-    print("-------------------------")
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_vote}")
+print("-------------------------")
+for j in votes_per_person:
+    print(f"{j[1]}: {j[0]}% ({j[2]})")
+print("-------------------------")
 
-    
+#The winner of the election based on popular vote.
+winner = votes_per_person[0][1]
+print(f"Winner: {winner}")
+print("-------------------------")
+
+with open("PyPollOutput.txt", "w") as text_file:
+    print("Election Results", file=text_file)
+    print("-------------------------", file=text_file)
+    print(f"Total Votes: {total_vote}", file=text_file)
+    print("-------------------------", file=text_file)
+    for j in votes_per_person:
+        print(f"{j[1]}: {j[0]}% ({j[2]})", file=text_file)
+    print("-------------------------", file=text_file)
+
+    #The winner of the election based on popular vote.
+    winner = votes_per_person[0][1]
+    print(f"Winner: {winner}", file=text_file)
+    print("-------------------------", file=text_file)
