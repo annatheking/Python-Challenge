@@ -18,19 +18,18 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
     #A complete list of candidates who received votes
     candidate_unique = list(set(candidate))
 
-    #The percentage of votes each candidate won
-
-
     #The total number of votes each candidate won
-
-
+    #The percentage of votes each candidate won
     #The winner of the election based on popular vote.
+    votes_per_person = [[float(round(candidate.count(i)*100/total_vote,3)), i, candidate.count(i)] for i in set(candidate)]
+    votes_per_person.sort(reverse = True)
 
-#print(candidate[:20])
-#print(candidate_unique)
-#print(candidate_unique[3])
+    print("Election Results")
+    print("-------------------------")
+    print(f"Total Votes: {total_vote}")
+    print("-------------------------")
+    for j in votes_per_person:
+        print(f"{j[1]}: {j[0]}% ({j[2]})")
+    print("-------------------------")
 
-print("Election Results")
-print("-------------------------")
-print(f"Total Votes: {total_vote}")
-print("-------------------------")
+    
