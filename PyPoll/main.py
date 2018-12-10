@@ -8,13 +8,15 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
     total_vote = 0
 
+    candidate = []
+
     for row in csvreader:
     #The total number of votes cast
         total_vote += 1
-        
+        candidate.append(row[2])
 
     #A complete list of candidates who received votes
-
+    candidate_unique = list(set(candidate))
 
     #The percentage of votes each candidate won
 
@@ -23,6 +25,10 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 
 
     #The winner of the election based on popular vote.
+
+#print(candidate[:20])
+#print(candidate_unique)
+#print(candidate_unique[3])
 
 print("Election Results")
 print("-------------------------")
