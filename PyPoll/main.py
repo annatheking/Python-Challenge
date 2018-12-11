@@ -26,7 +26,7 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
 to_print1 = ("Election Results\n"
             "-------------------------\n"
             f"Total Votes: {total_vote}\n"
-            "-------------------------")
+            "-------------------------\n")
 print(to_print1)
 
 for j in votes_per_person:
@@ -46,6 +46,5 @@ with open("PyPollOutput.txt", "w") as text_file:
 
     for j in votes_per_person:
         print(f"{j[1]}: {j[0]}% ({j[2]})", file=text_file)
-    print("-------------------------", file=text_file)
-
+ 
     text_file.write(to_print2)
