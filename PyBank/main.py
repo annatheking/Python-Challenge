@@ -52,19 +52,15 @@ with open(bank, newline="", encoding="UTF-8") as csvfile:
     position_decrs = monthly_diff.index(max_decrs) + 1
     item_decrs = month_column[position_decrs]
 
-with open("PyBankOutput.txt", "w") as text_file:
-    print("Financial Analysis", file=text_file)
-    print("----------------------------", file=text_file)    
-    print(f"Total Months: {mos}", file=text_file)
-    print(f"Total: ${net}", file=text_file)
-    print(f"Average  Change: ${avg}", file=text_file)
-    print(f"Greatest Increase in Profits: {item_incrs} ({max_incrs})", file=text_file)
-    print(f"Greatest Decrease in Profits: {item_decrs} ({max_decrs})", file=text_file)
+to_print = ("Financial Analysis\n"
+            "----------------------------\n"   
+            f"Total Months: {mos}\n"
+            f"Total: ${net}\n"
+            f"Average  Change: ${avg}\n"
+            f"Greatest Increase in Profits: {item_incrs} ({max_incrs})\n"
+            f"Greatest Decrease in Profits: {item_decrs} ({max_decrs})")
 
-print("Financial Analysis")
-print("----------------------------")    
-print(f"Total Months: {mos}")
-print(f"Total: ${net}")
-print(f"Average  Change: ${avg}")
-print(f"Greatest Increase in Profits: {item_incrs} ({max_incrs})")
-print(f"Greatest Decrease in Profits: {item_decrs} ({max_decrs})") 
+print(to_print)
+
+with open("PyBankOutput.txt", "w") as text_file:
+    text_file.write(to_print)
